@@ -1,0 +1,193 @@
+﻿.wrapper {
+    background-image: url(/img/noise.png);
+    overflow: hidden;
+}
+
+.wrapper {
+    height: 100%;
+    margin: 0;
+    font-family: 'VT323', monospace;
+    color: #ff9595;
+    background-color: #0d0103;
+}
+
+    .wrapper:after {
+        animation: grain 8s steps(10) infinite;
+        background-image: url(/img/noise.png);
+        content: "";
+        height: 300%;
+        left: -50%;
+        opacity: 0.3;
+        position: fixed;
+        top: -110%;
+        width: 300%;
+        pointer-events: none;
+    }
+
+header {
+    height: 6vh;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.router-view {
+    display: flex;
+    justify-content: space-between;
+    min-height: 90vh;
+    border: 2px dashed #ff9595;
+    padding: 1rem;
+}
+
+    .router-view > div:first-child {
+        width: 70%;
+    }
+
+    .router-view > div:last-child {
+        width: 30%;
+    }
+
+.siva-img {
+    -webkit-animation: img-glow 2s ease-in-out infinite alternate;
+    -moz-animation: img-glow 2s ease-in-out infinite alternate;
+    animation: img-glow 2s ease-in-out infinite alternate;
+}
+
+h1, h2, h3, p, a {
+    /*Global look*/
+    color: #ff9595;
+    text-shadow: 0 0 10px #ff0000;
+    -webkit-animation: glow 2s ease-in-out infinite alternate;
+    -moz-animation: glow 2s ease-in-out infinite alternate;
+    animation: glow 2s ease-in-out infinite alternate;
+    /*Typewriter animation*/
+    width: 70vw;
+    opacity: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-animation: type 2s steps(40, end);
+    animation: type 2s steps(40, end);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+h2 {
+    animation-delay: 0.5s;
+}
+
+h3 {
+    animation-delay: 0.75s;
+}
+
+p {
+    animation-delay: 1s;
+}
+
+a {
+    color: #fff;
+}
+
+    a:hover {
+        filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.5));
+    }
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #ff0000;
+    }
+
+    to {
+        text-shadow: 0 0 10px #ff9595;
+    }
+}
+
+@-webkit-keyframes img-glow {
+    from {
+        filter: drop-shadow(0px 15px 30px rgba(255, 0, 0, 0.5));
+        opacity: 0;
+    }
+
+    to {
+        filter: drop-shadow(0px 15px 30px rgba(255, 149, 149, 0.5));
+        opacity: 1;
+    }
+}
+
+@keyframes grain {
+    0%, 100% {
+        transform: translate(0, 0)
+    }
+
+    10% {
+        transform: translate(-5%, -10%)
+    }
+
+    20% {
+        transform: translate(-15%, 5%)
+    }
+
+    30% {
+        transform: translate(7%, -25%)
+    }
+
+    40% {
+        transform: translate(-5%, 25%)
+    }
+
+    50% {
+        transform: translate(-15%, 10%)
+    }
+
+    60% {
+        transform: translate(15%, 0%)
+    }
+
+    70% {
+        transform: translate(0%, 15%)
+    }
+
+    80% {
+        transform: translate(3%, 35%)
+    }
+
+    90% {
+        transform: translate(-10%, 10%)
+    }
+}
+
+@keyframes type {
+    0% {
+        width: 0;
+    }
+
+    1% {
+        opacity: 1;
+        border-right: .3em solid #fff;
+    }
+
+    20% {
+        border: none;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes type {
+    0% {
+        width: 0;
+    }
+
+    1% {
+        opacity: 1;
+        border-right: .3em solid #fff;
+    }
+
+    20% {
+        border: none;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
