@@ -1,0 +1,23 @@
+﻿@page "/game-list/{id:int}"
+
+<div class="wrapper">
+    <div class="main single-page">
+        <div id="single">
+            <h1>@Game.Title</h1>
+            <div>
+                <div>
+                    <p>Status: <span style="color: hotpink; font-weight: 500;">@Game.Status</span></p>
+                    <p>Score: <span>@(Game.Score == 0 ? "-" : Game.Score)</span></p>
+                    <p>100%: <span>@(Game.Completionist ? "⭐" : "-")</span></p>
+                    <p>Total replays: <span>@Game.TotalReplays</span></p>
+                </div>
+                <div>
+                    <p>Type: <span>@Game.Type</span></p>
+                    <p>System: <span>@Game.System</span></p>
+                    <p>First played: <span>@(Game.FirstPlayed != null ? Game.FirstPlayed.Value.ToString("d") : "Unknown")</span></p>
+                    <p>First finished: <span>@(Game.FirstFinished != null ? Game.FirstFinished.Value.ToString("d") : "Unknown")</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

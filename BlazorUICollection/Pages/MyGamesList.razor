@@ -1,0 +1,125 @@
+﻿@page "/game-list"
+<div class="wrapper">
+    <div class="main">
+        <h1>Playing</h1>
+        <p><i>What I am playing, right now!</i></p>
+        <table id="tablePlaying">
+            <tr>
+                <th>#</th>
+                <th>Title</th> <!--Original name, remasters and ports count as the original game-->
+                <th>Score</th> <!--Between 1 and 10-->
+                <th>Type</th> <!--Game, DLC, Expansion-->
+                <th>System</th> <!--Original system, or if multiplat; whatever system I played it on-->
+                <th>100%</th> <!--On modern games, all achievements/trophies count-->
+            </tr>
+            @{
+                var number1 = 0;
+            }
+            @foreach (var game in Games.Where(g => g.Status == "Playing").ToList())
+            {
+                number1++;
+                <tr id="playing-@number1" onmouseenter="setPointer('playing-@number1')" onmouseleave="removePointer('playing-@number1')">
+                    <td>@number1</td>
+                    <td><a href="game-list/@game.Id">@game.Title</a></td>
+                    <td style="@(game.Score == 10 ? "color: hotpink;" : "")">@(game.Score == 0 ? "-" : game.Score)</td>
+                    <td>@game.Type</td>
+                    <td>@game.System</td>
+                    <td>@(game.Completionist ? "⭐" : "-")</td>
+                </tr>
+            }
+        </table>
+
+        <h1>Finished</h1>
+        <p><i>Games played until the credits rolled, if applicable. Otherwise played until having had time to experience most of what the game has to offer in terms of modes, characters etc.</i></p>
+        <table id="tableFinished">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Score</th>
+                <th>Type</th>
+                <th>System</th>
+                <th>100%</th>
+            </tr>
+            @{
+                var number2 = 0;
+            }
+            @foreach (var game in Games.Where(g => g.Status == "Finished").ToList())
+            {
+                number2++;
+                <tr id="finished-@number2" onmouseenter="setPointer('finished-@number2')" onmouseleave="removePointer('finished-@number2')">
+                    <td>@number2</td>
+                    <td><a href="game-list/@game.Id">@game.Title</a></td>
+                    <td style="@(game.Score == 10 ? "color: hotpink;" : "")">@(game.Score == 0 ? "-" : game.Score)</td>
+                    <td>@game.Type</td>
+                    <td>@game.System</td>
+                    <td>@(game.Completionist ? "⭐" : "-")</td>
+                </tr>
+            }
+        </table>
+
+        <h1>Played</h1>
+        <p><i>Games played extensively, but not "finished". Includes games I felt satisfied or unsatisfied enough with to (probably) not return to.</i></p>
+        <table id="tablePlayed">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Score</th>
+                <th>Type</th>
+                <th>System</th>
+                <th>100%</th>
+            </tr>
+            @{
+                var number3 = 0;
+            }
+            @foreach (var game in Games.Where(g => g.Status == "Played").ToList())
+            {
+                number3++;
+                <tr id="played-@number3" onmouseenter="setPointer('played-@number3')" onmouseleave="removePointer('played-@number3')">
+                    <td>@number3</td>
+                    <td><a href="game-list/@game.Id">@game.Title</a></td>
+                    <td style="@(game.Score == 10 ? "color: hotpink;" : "")">@(game.Score == 0 ? "-" : game.Score)</td>
+                    <td>@game.Type</td>
+                    <td>@game.System</td>
+                    <td>@(game.Completionist ? "⭐" : "-")</td>
+                </tr>
+            }
+        </table>
+
+        <h1>Backlog</h1>
+        <p><i>Games I own but never got around to start or continue for whatever reason.</i></p>
+        <table id="tableBacklog">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Score</th>
+                <th>Type</th>
+                <th>System</th>
+                <th>100%</th>
+            </tr>
+            @{
+                var number4 = 0;
+            }
+            @foreach (var game in Games.Where(g => g.Status == "Backlog").ToList())
+            {
+                number4++;
+                <tr id="backlog-@number4" onmouseenter="setPointer('backlog-@number4')" onmouseleave="removePointer('backlog-@number4')">
+                    <td>@number4</td>
+                    <td><a href="game-list/@game.Id">@game.Title</a></td>
+                    <td style="@(game.Score == 10 ? "color: hotpink;" : "")">@(game.Score == 0 ? "-" : game.Score)</td>
+                    <td>@game.Type</td>
+                    <td>@game.System</td>
+                    <td>@(game.Completionist ? "⭐" : "-")</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <section id="legends">
+        <p>
+            <span>Total entries: @Games.Count,</span>
+            <span>100%: @Games.Where(g => g.Completionist).ToList().Count,</span>
+            <span>Average score: @(Games.Count == 0 ? "0" : @Games.Where(g => g.Score > 0).Average(g => g.Score).ToString("0.##")),</span>
+            <span>10/10: @Games.Where(g => g.Score == 10).ToList().Count</span>
+        </p>
+    </section>
+</div>
