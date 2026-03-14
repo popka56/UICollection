@@ -1,4 +1,8 @@
-﻿.wrapper {
+﻿.main {
+    padding: 1rem;
+}
+
+.wrapper {
     background-image: url(/img/noise.png);
     overflow: hidden;
 }
@@ -31,8 +35,7 @@ header {
 }
 
 .router-view {
-    display: flex;
-    justify-content: space-between;
+    position: relative;
     min-height: 90vh;
     border: 2px dashed #ff9595;
     padding: 1rem;
@@ -47,6 +50,9 @@ header {
     }
 
 .siva-img {
+    position: absolute;
+    top: 0;
+    right: -3.5rem;
     -webkit-animation: img-glow 2s ease-in-out infinite alternate;
     -moz-animation: img-glow 2s ease-in-out infinite alternate;
     animation: img-glow 2s ease-in-out infinite alternate;
